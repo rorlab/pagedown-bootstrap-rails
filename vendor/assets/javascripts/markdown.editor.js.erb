@@ -1199,6 +1199,9 @@
                     case "o":
                         doClick(buttons.olist);
                         break;
+                    case "p":
+                        doClick(buttons.preview);
+                        break;
                     case "u":
                         doClick(buttons.ulist);
                         break;
@@ -1412,9 +1415,15 @@
             buttons.redo = makeButton("wmd-redo-button", redoTitle, "fa fa-repeat", null, group4);
             buttons.redo.execute = function (manager) { if (manager) manager.redo(); };
 
+            // old group5 changed to new group6 and new group5 added by Lucius.Choi
+            group5 = makeGroup(5);
+            buttons.preview = makeButton("wmd-preview-button", "<%= I18n.t('components.markdown_editor.preview.button_title', default: 'Preview (Ctrl+P)') %>", "glyphicon glyphicon-eye-open", bindCommand(function () {
+                $('#previewModal').modal('show');
+            }), group5);
+
             if (helpOptions) {
-                group5 = makeGroup(5);
-                group5.className = group5.className + " pull-right";
+                group6 = makeGroup(6);
+                group6.className = group6.className + " pull-right";
                 var helpButton = document.createElement("button");
                 var helpButtonImage = document.createElement("i");
                 helpButtonImage.className = "fa fa-info";
@@ -1426,7 +1435,7 @@
                 helpButton.onclick = helpOptions.handler;
 
                 setupButton(helpButton, true);
-                group5.appendChild(helpButton);
+                group6.appendChild(helpButton);
                 buttons.help = helpButton;
             }
 
